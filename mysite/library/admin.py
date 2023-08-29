@@ -15,8 +15,9 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ['book', 'uuid', 'due_back']
+    list_display = ['book', 'uuid', 'status', 'due_back']
     list_filter = ['book', 'status', 'due_back']
+    list_editable = ['status', 'due_back']
 
     search_fields = ['uuid', 'book__title']
 

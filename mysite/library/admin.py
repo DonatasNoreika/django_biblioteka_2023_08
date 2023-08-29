@@ -5,6 +5,8 @@ from .models import Author, Book, Genre, BookInstance
 class BookInstanceInLine(admin.TabularInline):
     model = BookInstance
     extra = 0
+    readonly_fields = ['uuid']
+    can_delete = False
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -22,8 +24,11 @@ class BookInstanceAdmin(admin.ModelAdmin):
     )
 
 
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'display_books']
+
 # Register your models here.
-admin.site.register(Author)
+admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Genre)
 admin.site.register(BookInstance, BookInstanceAdmin)

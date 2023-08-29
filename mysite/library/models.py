@@ -8,13 +8,22 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Žanras'
+        verbose_name_plural = 'Žanrai'
+
 
 class Author(models.Model):
     first_name = models.CharField(verbose_name="Vardas", max_length=100)
-    last_name = models.CharField(verbose_name="Pavadė", max_length=100)
+    last_name = models.CharField(verbose_name="Pavardė", max_length=100)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        verbose_name = 'Autorius'
+        verbose_name_plural = 'Autoriai'
+
 
 class Book(models.Model):
     title = models.CharField(verbose_name="Pavadinimas", max_length=200)
@@ -25,6 +34,10 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Knyga'
+        verbose_name_plural = 'Knygos'
 
 class BookInstance(models.Model):
     uuid = models.UUIDField(verbose_name="Unikalus kodas", default=uuid.uuid4, help_text='Unikalus ID knygos kopijai')
@@ -42,3 +55,8 @@ class BookInstance(models.Model):
 
     def __str__(self):
         return f"{self.uuid} ({self.book.title})"
+
+    class Meta:
+        verbose_name = 'Egzempliorius'
+        verbose_name_plural = 'Egzemplioriai'
+

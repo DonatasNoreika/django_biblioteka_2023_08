@@ -1,0 +1,7 @@
+.sidebar-nav {
+    margin-top: 20px;
+    margin-left: 100px;
+    padding: 0;
+    background-color: red;
+    list-style: none;
+}

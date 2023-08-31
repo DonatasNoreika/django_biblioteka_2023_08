@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block "title" %}Biblioteka: Knyga</title>{% endblock %}
+
+{% block "content" %}
+<div class="container">
+    <h1>{{ book.title }}</h1>
+    <hr>
+    <p><strong>Autorius: </strong>{{ book.author }}</p>
+    <p><strong>ISBM: </strong>{{ book.isbn }}</p>
+    <p><strong>Žanras: </strong>{{ book.display_genre }}</p>
+    <p>{{ book.summary }}</p>
+    <hr>
+    <ol>
+    {% for copy in book.instances.all %}
+        <li>{{ copy }}</li>
+    {% endfor %}
+    </ol>
+</div>
+{% endblock %}

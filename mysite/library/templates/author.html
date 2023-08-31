@@ -9,7 +9,7 @@
     <p>{{ author.description }}</p>
     <h5>Mes turime šias autoriaus knygas:</h5>
     {% for book in author.books.all %}
-    <li>{{ book }}</li>
+    <li><a href="{% url 'book' book.pk %}">{{ book }}</a></li>
     {% endfor %}
 </div>
 {% endblock %}

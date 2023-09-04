@@ -37,6 +37,7 @@ class Book(models.Model):
     summary = models.TextField(verbose_name="Aprašymas", max_length=1000, help_text='Trumpas knygos aprašymas')
     isbn = models.CharField(verbose_name="ISBN", max_length=13, help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
     genre = models.ManyToManyField(to="Genre", help_text='Išrinkite žanrą(us) šiai knygai')
+    cover = models.ImageField(verbose_name="Viršelis", upload_to='covers', null=True, blank=True)
 
     def display_genre(self):
         genres = self.genre.all()

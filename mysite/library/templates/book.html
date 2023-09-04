@@ -3,6 +3,14 @@
 {% block "title" %}Biblioteka: Knyga</title>{% endblock %}
 
 {% block "content" %}
+{% load static %}
+{% if book.cover %}
+<div>
+    <img src="{{ book.cover.url }}" class="max-width: 20%" alt="...">
+    {% else %}
+    <img src="{% static 'img/no-image.png' %}" class="max-width: 20%">
+</div>
+{% endif %}
 <div class="container">
     <h1>{{ book.title }}</h1>
     <hr>
@@ -14,7 +22,8 @@
     <h2>Knygos kopijos:</h2>
     {% for copy in book.instances.all %}
     <p>{{ copy.uuid }}</p>
-    <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'p' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+    <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'p' %}text-danger{% else %}text-warning{% endif %}">
+        {{ copy.get_status_display }}</p>
     {% if copy.status != 'a' and copy.status != 'g' %}
     <p><strong>{{ copy.due_back }}</strong></p>
     {% endif %}

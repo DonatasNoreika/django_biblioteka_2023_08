@@ -10,7 +10,7 @@
     <div class="row">
         {% for book in books %}
         <div class="col-md-4 d-flex align-items-stretch">
-            <div class="card mb-4 shadow-sm">
+            <div class="card mb-4 shadow-sm" style="width:300px">
                 {% if book.cover %}
                 <img src="{{ book.cover.url }}" class="card-img-top" alt="...">
                 {% else %}

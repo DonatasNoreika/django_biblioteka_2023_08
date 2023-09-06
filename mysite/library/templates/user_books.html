@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block "title" %}Biblioteka: Mano knygos{% endblock %}
+
+{% block "content" %}
+{% load static %}
+<h1>Mano paimtos knygos:</h1>
+<ul>
+    <div class="row">
+        {% for instance in instances %}
+        <li class="{% if instance.is_overdue %}text-danger{% endif %}">{{ instance }} ({{ instance.due_back }})</li>
+        {% endfor %}
+    </div>
+</ul>
+{% endblock %}

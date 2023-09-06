@@ -1,10 +1,13 @@
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
+from datetime import date
+
 
 # Create your models here.
 class Genre(models.Model):
-    name = models.CharField(verbose_name="Pavadinimas", max_length=200, help_text='Įveskite knygos žanrą (pvz. detektyvas)')
+    name = models.CharField(verbose_name="Pavadinimas", max_length=200,
+                            help_text='Įveskite knygos žanrą (pvz. detektyvas)')
 
     def __str__(self):
         return self.name
@@ -36,7 +39,8 @@ class Book(models.Model):
     title = models.CharField(verbose_name="Pavadinimas", max_length=200)
     author = models.ForeignKey(to="Author", on_delete=models.SET_NULL, null=True, related_name="books")
     summary = models.TextField(verbose_name="Aprašymas", max_length=1000, help_text='Trumpas knygos aprašymas')
-    isbn = models.CharField(verbose_name="ISBN", max_length=13, help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
+    isbn = models.CharField(verbose_name="ISBN", max_length=13,
+                            help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
     genre = models.ManyToManyField(to="Genre", help_text='Išrinkite žanrą(us) šiai knygai')
     cover = models.ImageField(verbose_name="Viršelis", upload_to='covers', null=True, blank=True)
 
@@ -52,11 +56,15 @@ class Book(models.Model):
         verbose_name = 'Knyga'
         verbose_name_plural = 'Knygos'
 
+
 class BookInstance(models.Model):
     uuid = models.UUIDField(verbose_name="Unikalus kodas", default=uuid.uuid4, help_text='Unikalus ID knygos kopijai')
     book = models.ForeignKey(to="Book", on_delete=models.CASCADE, related_name="instances")
     due_back = models.DateField(verbose_name="Gražinimo data", null=True, blank=True)
     reader = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def is_overdue(self):
+        return self.due_back and self.due_back < date.today()
 
     LOAN_STATUS = (
         ('a', 'Administruojama'),
@@ -73,4 +81,3 @@ class BookInstance(models.Model):
     class Meta:
         verbose_name = 'Egzempliorius'
         verbose_name_plural = 'Egzemplioriai'
-

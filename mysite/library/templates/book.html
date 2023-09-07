@@ -19,6 +19,16 @@
     <p><strong>Žanras: </strong>{{ book.display_genre }}</p>
     <p>{{ book.summary }}</p>
     <hr>
+    {% if user.is_authenticated %}
+    <div class="fieldWrapper">
+        <h4>Palikite atsiliepimą:</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.content }}</br>
+            <input type="submit" value="Paskelbti">
+        </form>
+    </div>
+    {% endif %}
     <h2>Atsiliepimai:</h2>
     {% if book.reviews.all %}
     {% for review in book.reviews.all %}

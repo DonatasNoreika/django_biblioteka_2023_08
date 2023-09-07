@@ -9,9 +9,13 @@ class BookInstanceInLine(admin.TabularInline):
     can_delete = False
 
 
+class BookReviewInLine(admin.TabularInline):
+    model = BookReview
+    extra = 0
+
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'isbn', 'display_genre']
-    inlines = [BookInstanceInLine]
+    inlines = [BookReviewInLine, BookInstanceInLine]
 
 
 class BookInstanceAdmin(admin.ModelAdmin):

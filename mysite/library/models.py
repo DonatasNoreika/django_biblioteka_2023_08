@@ -58,6 +58,18 @@ class Book(models.Model):
         verbose_name_plural = 'Knygos'
 
 
+class BookReview(models.Model):
+    book = models.ForeignKey(to="Book", verbose_name="Knyga", on_delete=models.SET_NULL, null=True, blank=True, related_name='reviews')
+    reviewer = models.ForeignKey(to=User, verbose_name="Vartotojas", on_delete=models.SET_NULL, null=True, blank=True)
+    date_created = models.DateTimeField(verbose_name="Data", auto_now_add=True)
+    content = models.TextField(verbose_name="Atsiliepimas", max_length=2000)
+
+    class Meta:
+        verbose_name = "Atsiliepimas"
+        verbose_name_plural = 'Atsiliepimai'
+        ordering = ['-date_created']
+
+
 class BookInstance(models.Model):
     uuid = models.UUIDField(verbose_name="Unikalus kodas", default=uuid.uuid4, help_text='Unikalus ID knygos kopijai')
     book = models.ForeignKey(to="Book", on_delete=models.CASCADE, related_name="instances")
@@ -82,3 +94,5 @@ class BookInstance(models.Model):
     class Meta:
         verbose_name = 'Egzempliorius'
         verbose_name_plural = 'Egzemplioriai'
+
+

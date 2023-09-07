@@ -19,6 +19,17 @@
     <p><strong>Žanras: </strong>{{ book.display_genre }}</p>
     <p>{{ book.summary }}</p>
     <hr>
+    <h2>Atsiliepimai:</h2>
+    {% if book.reviews.all %}
+    {% for review in book.reviews.all %}
+    <hr>
+    <strong>{{ review.reviewer }}</strong>, <em>{{ review.date_created }}</em>
+    <p>{{ review.content }}</p>
+    {% endfor %}
+    {% else %}
+    <p>Knyga neturi atsiliepimų</p>
+    {% endif %}
+    <hr>
     <h2>Knygos kopijos:</h2>
     {% for copy in book.instances.all %}
     <p>{{ copy.uuid }}</p>

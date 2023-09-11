@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import User
 from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -127,3 +128,7 @@ def register(request):
             return redirect('register')
     else:
         return render(request, 'registration/register.html')
+
+@login_required
+def profilis(request):
+    return render(request, "profilis.html")

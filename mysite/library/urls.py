@@ -11,4 +11,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path("mybooks/", views.UserBooksListView.as_view(), name='mybooks'),
     path('register/', views.register, name="register"),
+    path("profilis/", views.profilis, name="profilis"),
 ]

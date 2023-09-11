@@ -95,4 +95,9 @@ class BookInstance(models.Model):
         verbose_name = 'Egzempliorius'
         verbose_name_plural = 'Egzemplioriai'
 
+class Profilis(models.Model):
+    user = models.OneToOneField(to=User, verbose_name="Vartotojas", on_delete=models.CASCADE)
+    nuotrauka = models.ImageField(default="profile_pics/default.png", verbose_name="Nuotrauka", upload_to="profile_pics")
 
+    def __str__(self):
+        return f"{self.user.username} profilis"

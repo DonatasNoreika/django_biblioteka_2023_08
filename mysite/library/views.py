@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.forms import User
 from django.views.generic.edit import FormMixin
-from .forms import BookReviewForm, UserUpdateForm, ProfilisUpdateForm
+from .forms import BookReviewForm, UserUpdateForm, ProfilisUpdateForm, UserBooksCreateUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -162,7 +162,8 @@ class UserBooksCreateView(LoginRequiredMixin, generic.CreateView):
     model = BookInstance
     template_name = 'user_book_form.html'
     success_url = "/library/mybooks/"
-    fields = ['book', 'due_back', 'status']
+    # fields = ['book', 'due_back', 'status']
+    form_class = UserBooksCreateUpdateForm
 
     def form_valid(self, form):
         form.instance.reader = self.request.user
@@ -174,7 +175,8 @@ class UserBooksUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Updat
     model = BookInstance
     template_name = 'user_book_form.html'
     # success_url = "/library/mybooks/"
-    fields = ['book', 'due_back', 'status']
+    # fields = ['book', 'due_back', 'status']
+    form_class = UserBooksCreateUpdateForm
 
     def get_success_url(self):
         return reverse('mybook', kwargs={"pk": self.object.id})

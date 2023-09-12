@@ -186,3 +186,12 @@ class UserBooksUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Updat
         return self.request.user == book.reader
 
 
+class UserBooksDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = BookInstance
+    template_name = 'user_book_delete.html'
+    success_url = "/library/mybooks/"
+    context_object_name = 'instance'
+
+    def test_func(self):
+        book = self.get_object()
+        return self.request.user == book.reader

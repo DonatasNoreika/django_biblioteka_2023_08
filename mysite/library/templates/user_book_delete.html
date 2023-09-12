@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block "title" %}Biblioteka: Knygos egzemplioriaus trynimas{% endblock %}
+{% load crispy_forms_tags %}
+{% block "content" %}
+    <div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Ištrinti knygą</legend>
+            <h2>Ar tikrai norite ištrinti knygą {{ instance.uuid }} ({{ instance.book.title }})?</h2>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Taip, ištrinti</button>
+            <a class="btn btn-outline-secondary" href="{% url 'mybook' instance.id %}">Atšaukti</a>
+        </div>
+    </form>
+    </div>
+{% endblock %}

@@ -11,5 +11,6 @@
         <li class="{% if instance.is_overdue %}text-danger{% endif %}"><a href="{{ instance.pk }}">{{ instance }} ({{ instance.due_back }})</a></li>
         {% endfor %}
     </div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'mybooks_new' %}">Sukurti egzempliorių</a>
 </ul>
 {% endblock %}

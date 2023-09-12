@@ -8,8 +8,7 @@
 <ul>
     <div class="row">
         {% for instance in instances %}
-        <img class="rounded-circle account-img" src="{{ instance.reader.profilis.nuotrauka.url }}" style="width: 200px; height: auto;">
-        <li class="{% if instance.is_overdue %}text-danger{% endif %}">{{ instance }} ({{ instance.due_back }})</li>
+        <li class="{% if instance.is_overdue %}text-danger{% endif %}"><a href="{{ instance.pk }}">{{ instance }} ({{ instance.due_back }})</a></li>
         {% endfor %}
     </div>
 </ul>

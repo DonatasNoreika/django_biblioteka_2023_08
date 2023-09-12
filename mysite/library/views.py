@@ -95,13 +95,6 @@ def search(request):
     return render(request, 'search.html', {'books': search_results, 'query': query})
 
 
-class UserBooksListView(LoginRequiredMixin, generic.ListView):
-    model = BookInstance
-    template_name = 'user_books.html'
-    context_object_name = "instances"
-
-    def get_queryset(self):
-        return BookInstance.objects.filter(reader=self.request.user)
 
 
 @csrf_protect
@@ -148,3 +141,17 @@ def profilis(request):
         'p_form': p_form,
     }
     return render(request, "profilis.html", context=context)
+
+class UserBooksListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = 'user_books.html'
+    context_object_name = "instances"
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user)
+
+
+class UserBooksDetailView(LoginRequiredMixin, generic.DetailView):
+    model = BookInstance
+    template_name = 'user_book.html'
+    context_object_name = 'instance'

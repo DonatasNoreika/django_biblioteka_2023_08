@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block "title" %}Biblioteka: Knygos egzempliorius{% endblock %}
+
+{% block "content" %}
+{% load static %}
+<h1>Knygos egzempliorius:</h1>
+<ul>
+    <div class="row">
+        <img class="rounded-circle account-img" src="{{ instance.reader.profilis.nuotrauka.url }}" style="width: 200px; height: auto;">
+        <p><strong>Vartotojas: </strong>{{ instance.reader.username }}</p>
+        <p><strong>Knyga: </strong>{{ instance.book.title }}</p>
+        <p><strong>UUID: </strong>{{ instance.uuid }}</p>
+        <p><strong>Reikia gražinti: </strong><span class="{% if instance.is_overdue %}text-danger{% endif %}">{{ instance.due_back }}</span></p>
+    </div>
+</ul>
+{% endblock %}

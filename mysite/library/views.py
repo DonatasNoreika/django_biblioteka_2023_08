@@ -12,6 +12,7 @@ from django.contrib.auth.forms import User
 from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm, UserUpdateForm, ProfilisUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
 def index(request):
@@ -167,4 +168,21 @@ class UserBooksCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.reader = self.request.user
         form.save()
         return super().form_valid(form)
+
+
+class UserBooksUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = BookInstance
+    template_name = 'user_book_form.html'
+    success_url = "/library/mybooks/"
+    fields = ['book', 'due_back', 'status']
+
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+    def test_func(self):
+        book = self.get_object()
+        return self.request.user == book.reader
+
 

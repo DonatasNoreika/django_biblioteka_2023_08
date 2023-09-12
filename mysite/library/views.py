@@ -173,8 +173,11 @@ class UserBooksCreateView(LoginRequiredMixin, generic.CreateView):
 class UserBooksUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BookInstance
     template_name = 'user_book_form.html'
-    success_url = "/library/mybooks/"
+    # success_url = "/library/mybooks/"
     fields = ['book', 'due_back', 'status']
+
+    def get_success_url(self):
+        return reverse('mybook', kwargs={"pk": self.object.id})
 
     def form_valid(self, form):
         form.instance.reader = self.request.user

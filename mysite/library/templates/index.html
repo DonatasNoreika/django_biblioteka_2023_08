@@ -13,5 +13,5 @@
     <li><strong>{% trans "Now Available" %}: </strong>{{ num_instances_available }}</li>
     <li><strong>{% trans "Authors" %}: </strong>{{ num_authors }}</li>
 </ul>
-<p>{% trans "Your visits" %}: {{ num_visits }}</p>
+<p>{% blocktrans %}Your visits: {{ num_visits }}{% endblocktrans %}</p>
 {% endblock %}

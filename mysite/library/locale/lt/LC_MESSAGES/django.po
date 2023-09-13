@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 10:19+0300\n"
-"PO-Revision-Date: 2023-09-13 10:22+0300\n"
+"POT-Creation-Date: 2023-09-13 10:32+0300\n"
+"PO-Revision-Date: 2023-09-13 10:35+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -18,6 +18,42 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && (n%100<11 || n%100>19) ? 0 : "
 "n%10>=2 && n%10<=9 && (n%100<11 || n%100>19) ? 1 : 2);\n"
 "X-Generator: Poedit 3.3.2\n"
+
+#: .\models.py:41
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: .\models.py:42
+msgid "Author"
+msgstr "Autorius"
+
+#: .\models.py:43
+msgid "Description"
+msgstr "Aprašymas"
+
+#: .\models.py:43
+msgid "Shot book summary"
+msgstr "Trumpas knygos aprašymas"
+
+#: .\models.py:46
+msgid "Genres"
+msgstr "Žanrai"
+
+#: .\models.py:47
+msgid "Cover"
+msgstr "Viršelis"
+
+#: .\models.py:54
+msgid "Display Genre"
+msgstr "Žanrai"
+
+#: .\models.py:60
+msgid "Book"
+msgstr "Knyga"
+
+#: .\models.py:61 .\templates\base.html:42 .\templates\index.html:11
+msgid "Books"
+msgstr "Knygos"
 
 #: .\templates\base.html:26
 msgid "Library"
@@ -34,10 +70,6 @@ msgstr "PRADŽIA"
 #: .\templates\base.html:39 .\templates\index.html:14
 msgid "Authors"
 msgstr "Autoriai"
-
-#: .\templates\base.html:42 .\templates\index.html:11
-msgid "Books"
-msgstr "Knygos"
 
 #: .\templates\base.html:46
 msgid "Search"

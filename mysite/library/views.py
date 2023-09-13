@@ -13,6 +13,7 @@ from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm, UserUpdateForm, ProfilisUpdateForm, UserBooksCreateUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.utils.translation import gettext as _
 
 # Create your views here.
 def index(request):
@@ -107,18 +108,18 @@ def register(request):
         password2 = request.POST['password2']
         if password == password2:
             if User.objects.filter(username=username).exists():
-                messages.error(request, f"Vartotojo vardas {username} užimtas!")
+                messages.error(request, _("Username %s already exists!") % username)
                 return redirect('register')
             else:
                 if User.objects.filter(email=email).exists():
-                    messages.error(request, f'Vartotojas su el. paštu {email} jau užregistruotas!')
+                    messages.error(request, _("Email %s already exists!") % email)
                     return redirect('register')
                 else:
                     User.objects.create_user(username=username, email=email, password=password)
-                    messages.info(request, f'Vartotojas {username} užregistruotas!')
+                    messages.info(request, _("User %s registered!") % username)
                     return redirect('login')
         else:
-            messages.error(request, "Slaptažodžiai nesutampa!")
+            messages.error(request, _('Passwords do not match!'))
             return redirect('register')
     else:
         return render(request, 'registration/register.html')

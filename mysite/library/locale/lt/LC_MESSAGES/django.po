@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 10:32+0300\n"
-"PO-Revision-Date: 2023-09-13 10:35+0300\n"
+"POT-Creation-Date: 2023-09-13 10:44+0300\n"
+"PO-Revision-Date: 2023-09-13 10:45+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -118,3 +118,22 @@ msgstr "Turime"
 #: .\templates\index.html:16
 msgid "Your visits"
 msgstr "Apsilankymų kiekis"
+
+#: .\views.py:111
+#, python-format
+msgid "Username %s already exists!"
+msgstr "Vartotojo vardas %s užimtas!"
+
+#: .\views.py:115
+#, python-format
+msgid "Email %s already exists!"
+msgstr "El. pašto adresas %s užimtas!"
+
+#: .\views.py:119
+#, python-format
+msgid "User %s registered!"
+msgstr "Vartotojas %s registruotas!"
+
+#: .\views.py:122
+msgid "Passwords do not match!"
+msgstr "Slaptažodžiai nesutampa!"
